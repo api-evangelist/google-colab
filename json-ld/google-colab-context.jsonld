@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "colab": "https://colab.research.google.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Notebook": {
+      "@id": "colab:Notebook",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "fileId": "colab:fileId",
+        "mimeType": "schema:encodingFormat",
+        "webViewLink": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "createdTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "owner": "schema:author",
+        "accelerator": "colab:accelerator"
+      }
+    },
+
+    "Cell": {
+      "@id": "colab:Cell",
+      "@context": {
+        "cellType": "colab:cellType",
+        "source": "colab:source",
+        "executionCount": "colab:executionCount",
+        "outputs": "colab:outputs"
+      }
+    },
+
+    "Runtime": {
+      "@id": "colab:Runtime",
+      "@context": {
+        "runtimeType": "colab:runtimeType",
+        "hardwareAccelerator": "colab:hardwareAccelerator",
+        "state": "colab:runtimeState",
+        "connectedAt": {
+          "@id": "colab:connectedAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Permission": {
+      "@id": "colab:Permission",
+      "@context": {
+        "role": "colab:role",
+        "type": "colab:permissionType",
+        "emailAddress": "schema:email",
+        "displayName": "schema:name"
+      }
+    }
+  }
+}

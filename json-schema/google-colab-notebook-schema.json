@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://colab.research.google.com/schemas/notebook.json",
+  "title": "Google Colab Notebook",
+  "description": "Schema for a Google Colab notebook file in Jupyter notebook format (.ipynb), containing code cells, text cells, metadata, and execution outputs.",
+  "type": "object",
+  "required": ["nbformat", "nbformat_minor", "metadata", "cells"],
+  "properties": {
+    "nbformat": {
+      "type": "integer",
+      "description": "Notebook format major version",
+      "const": 4
+    },
+    "nbformat_minor": {
+      "type": "integer",
+      "description": "Notebook format minor version",
+      "minimum": 0
+    },
+    "metadata": {
+      "$ref": "#/$defs/NotebookMetadata"
+    },
+    "cells": {
+      "type": "array",
+      "description": "The cells in the notebook",
+      "items": {
+        "$ref": "#/$defs/Cell"
+      }
+    }
+  },
+  "$defs": {
+    "NotebookMetadata": {
+      "type": "object",
+      "description": "Notebook-level metadata including Colab-specific settings",
+      "properties": {
+        "colab": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The notebook name displayed in Colab"
+            },
+            "provenance": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "collapsed_sections": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "toc_visible": {
+              "type": "boolean"
+            }
+          }
+        },
+        "kernelspec": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": "python3"
+            },
+            "display_name": {
+              "type": "string",
+              "default": "Python 3"
+            }
+          }
+        },
+        "language_info": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": "python"
+            }
+          }
+        },
+        "accelerator": {
+          "type": "string",
+          "description": "Hardware accelerator type",
+          "enum": ["GPU", "TPU", "NONE"]
+        }
+      }
+    },
+    "Cell": {
+      "type": "object",
+      "required": ["cell_type", "source", "metadata"],
+      "properties": {
+        "cell_type": {
+          "type": "string",
+          "enum": ["code", "markdown", "raw"],
+          "description": "The type of cell"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The source content of the cell as an array of lines"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "colab_type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "execution_count": {
+          "type": ["integer", "null"],
+          "description": "Execution count for code cells"
+        },
+        "outputs": {
+          "type": "array",
+          "description": "Outputs from code cell execution",
+          "items": {
+            "$ref": "#/$defs/Output"
+          }
+        }
+      }
+    },
+    "Output": {
+      "type": "object",
+      "description": "An output from a code cell execution",
+      "properties": {
+        "output_type": {
+          "type": "string",
+          "enum": ["stream", "display_data", "execute_result", "error"]
+        },
+        "text": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "name": {
+          "type": "string",
+          "enum": ["stdout", "stderr"]
+        },
+        "ename": {
+          "type": "string"
+        },
+        "evalue": {
+          "type": "string"
+        },
+        "traceback": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

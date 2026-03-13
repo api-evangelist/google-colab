@@ -1,0 +1,313 @@
+openapi: 3.1.0
+info:
+  title: Google Colab Notebooks via Drive API
+  description: >-
+    Colab notebooks are stored as Google Drive files with the MIME type
+    application/vnd.google.colaboratory. This API specification covers the
+    Google Drive v3 endpoints commonly used to manage Colab notebooks,
+    including listing, creating, updating, and sharing notebooks.
+  version: v3
+  contact:
+    name: Google Developers
+    url: https://developers.google.com/drive
+  termsOfService: https://cloud.google.com/terms
+externalDocs:
+  description: Google Drive API Reference
+  url: https://developers.google.com/drive/api/reference/rest/v3
+servers:
+  - url: https://www.googleapis.com/drive/v3
+    description: Google Drive API v3
+tags:
+  - name: Files
+    description: Notebook file operations
+  - name: Permissions
+    description: Sharing and access control
+security:
+  - oauth2: []
+paths:
+  /files:
+    get:
+      operationId: listNotebooks
+      summary: List Colab notebooks
+      description: >-
+        Lists Colab notebooks in Google Drive. Use the q parameter with
+        mimeType='application/vnd.google.colaboratory' to filter for
+        notebook files.
+      tags:
+        - Files
+      parameters:
+        - name: q
+          in: query
+          description: Query string for filtering (e.g. mimeType filter for Colab files)
+          schema:
+            type: string
+            default: "mimeType='application/vnd.google.colaboratory'"
+        - name: pageSize
+          in: query
+          description: Maximum number of files to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: pageToken
+          in: query
+          description: Token for next page of results
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Fields to include in the response
+          schema:
+            type: string
+        - name: orderBy
+          in: query
+          description: Sort order (e.g. modifiedTime desc)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of Colab notebook files
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createNotebook
+      summary: Create a Colab notebook
+      description: >-
+        Creates a new Colab notebook in Google Drive by uploading metadata
+        with the Colab MIME type.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/File'
+      responses:
+        '200':
+          description: Notebook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '400':
+          description: Invalid request
+  /files/{fileId}:
+    get:
+      operationId: getNotebook
+      summary: Get notebook metadata
+      description: Retrieves metadata for a Colab notebook file.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+        - name: fields
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Notebook file metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '404':
+          description: File not found
+    patch:
+      operationId: updateNotebook
+      summary: Update notebook metadata
+      description: Updates the metadata of a Colab notebook file.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/File'
+      responses:
+        '200':
+          description: Notebook updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+    delete:
+      operationId: deleteNotebook
+      summary: Delete a notebook
+      description: Permanently deletes a Colab notebook file.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+      responses:
+        '204':
+          description: Notebook deleted
+        '404':
+          description: File not found
+  /files/{fileId}/copy:
+    post:
+      operationId: copyNotebook
+      summary: Copy a notebook
+      description: Creates a copy of a Colab notebook, useful for templating workflows.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/File'
+      responses:
+        '200':
+          description: Notebook copied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+  /files/{fileId}/permissions:
+    get:
+      operationId: listPermissions
+      summary: List notebook permissions
+      description: Lists the sharing permissions for a Colab notebook.
+      tags:
+        - Permissions
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+      responses:
+        '200':
+          description: List of permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Permission'
+    post:
+      operationId: createPermission
+      summary: Share a notebook
+      description: Creates a sharing permission for a Colab notebook.
+      tags:
+        - Permissions
+      parameters:
+        - $ref: '#/components/parameters/fileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '200':
+          description: Permission created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+components:
+  parameters:
+    fileId:
+      name: fileId
+      in: path
+      required: true
+      description: The ID of the notebook file
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/drive: Full Drive access
+            https://www.googleapis.com/auth/drive.file: Per-file access
+  schemas:
+    FileList:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        nextPageToken:
+          type: string
+        kind:
+          type: string
+          default: drive#fileList
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: The notebook file name
+        mimeType:
+          type: string
+          description: MIME type (application/vnd.google.colaboratory for Colab notebooks)
+          default: application/vnd.google.colaboratory
+        description:
+          type: string
+        parents:
+          type: array
+          items:
+            type: string
+          description: Parent folder IDs
+        createdTime:
+          type: string
+          format: date-time
+          readOnly: true
+        modifiedTime:
+          type: string
+          format: date-time
+          readOnly: true
+        owners:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              displayName:
+                type: string
+              emailAddress:
+                type: string
+        webViewLink:
+          type: string
+          format: uri
+          readOnly: true
+        starred:
+          type: boolean
+        trashed:
+          type: boolean
+    Permission:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          enum: [user, group, domain, anyone]
+        role:
+          type: string
+          enum: [owner, organizer, fileOrganizer, writer, commenter, reader]
+        emailAddress:
+          type: string
+          format: email
+        displayName:
+          type: string
+          readOnly: true
