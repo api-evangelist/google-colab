@@ -28,7 +28,7 @@ paths:
   /files:
     get:
       operationId: listNotebooks
-      summary: List Colab notebooks
+      summary: Google Colab List Colab notebooks
       description: >-
         Lists Colab notebooks in Google Drive. Use the q parameter with
         mimeType='application/vnd.google.colaboratory' to filter for
@@ -75,7 +75,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createNotebook
-      summary: Create a Colab notebook
+      summary: Google Colab Create a Colab notebook
       description: >-
         Creates a new Colab notebook in Google Drive by uploading metadata
         with the Colab MIME type.
@@ -99,7 +99,7 @@ paths:
   /files/{fileId}:
     get:
       operationId: getNotebook
-      summary: Get notebook metadata
+      summary: Google Colab Get notebook metadata
       description: Retrieves metadata for a Colab notebook file.
       tags:
         - Files
@@ -120,7 +120,7 @@ paths:
           description: File not found
     patch:
       operationId: updateNotebook
-      summary: Update notebook metadata
+      summary: Google Colab Update notebook metadata
       description: Updates the metadata of a Colab notebook file.
       tags:
         - Files
@@ -141,7 +141,7 @@ paths:
                 $ref: '#/components/schemas/File'
     delete:
       operationId: deleteNotebook
-      summary: Delete a notebook
+      summary: Google Colab Delete a notebook
       description: Permanently deletes a Colab notebook file.
       tags:
         - Files
@@ -155,7 +155,7 @@ paths:
   /files/{fileId}/copy:
     post:
       operationId: copyNotebook
-      summary: Copy a notebook
+      summary: Google Colab Copy a notebook
       description: Creates a copy of a Colab notebook, useful for templating workflows.
       tags:
         - Files
@@ -176,7 +176,7 @@ paths:
   /files/{fileId}/permissions:
     get:
       operationId: listPermissions
-      summary: List notebook permissions
+      summary: Google Colab List notebook permissions
       description: Lists the sharing permissions for a Colab notebook.
       tags:
         - Permissions
@@ -196,7 +196,7 @@ paths:
                       $ref: '#/components/schemas/Permission'
     post:
       operationId: createPermission
-      summary: Share a notebook
+      summary: Google Colab Share a notebook
       description: Creates a sharing permission for a Colab notebook.
       tags:
         - Permissions
