@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,144 +9,98 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Google Colab
 providerId: google-colab
-publisherName: Google Colab
-serviceCategory: API
+publisherName: Google LLC
+serviceCategory: Notebook / ML Compute
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Collaboration
-  - Data Science
-  - Google Cloud
-  - Jupyter
-  - Machine Learning
   - Notebooks
-  - Python
+  - Machine Learning
+  - Google Cloud
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Google Colab API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps for Google Colab: consumer Colab (Pro/Pro+/PAYG) bills monthly via
+  the Google Account billing surface using compute-unit consumption; Colab Enterprise bills hourly through
+  the standard Google Cloud Billing pipeline as Vertex AI usage. Colab compute units are the primary
+  spend lever for non-enterprise users.'
+sources:
+  - https://colab.research.google.com/signup
+  - https://cloud.google.com/colab/pricing
+  - https://research.google.com/colaboratory/faq.html
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Subscription + Pay-As-You-Go
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Google Colab
-  ServiceCategory: Developer Tools / API
-  ProviderName: Google Colab
-  PublisherName: Google Colab
-  InvoiceIssuerName: Google Colab
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: Colab / Colab Enterprise
+  ServiceCategory: AI Compute / Notebooks
+  ProviderName: Google
+  PublisherName: Google LLC
+  InvoiceIssuerName: Google LLC
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: compute_units
+    description: Compute units consumed by attached runtimes (consumer Colab)
+    unit: compute_unit
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
+      - subscription
+      - gpu_class
+      - user
+  - name: subscription_seat
+    description: Active Colab Pro / Pro+ subscription seats
+    unit: seat-month
+    aggregation: max
+    dimensions:
       - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: enterprise_runtime_hours
+    description: Vertex AI runtime hours for Colab Enterprise notebooks
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
+      - machine_type
+      - accelerator
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - project
+  - name: storage_gb_month
+    description: Notebook storage consumed (Drive for consumer Colab; GCS for Enterprise)
+    unit: GB-month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - storage_backend
 apis:
-  - name: Colab API via Google Drive API
-    baseURL: https://www.googleapis.com/drive/v3
-    tags:
-      - File Management
-      - Google Drive
-      - Notebooks
-    serviceName: Colab API via Google Drive API
-    serviceCategory: API
-  - name: Colab Runtime and Kernel Management
+  - name: Colab Notebook
     baseURL: https://colab.research.google.com
-    tags:
-      - GPU
-      - Kernels
-      - Runtime
-      - TPU
-    serviceName: Colab Runtime and Kernel Management
-    serviceCategory: API
-  - name: Colab Enterprise API
-    baseURL: https://notebooks.googleapis.com
-    tags:
-      - Enterprise
-      - Managed Notebooks
-      - Vertex AI
-    serviceName: Colab Enterprise API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+    serviceName: Colab Notebook
+    serviceCategory: Notebook
+  - name: Colab Enterprise (Vertex AI)
+    baseURL: https://aiplatform.googleapis.com
+    serviceName: Vertex AI Notebooks
+    serviceCategory: AI Compute
+principles:
+  - name: Visibility
+    description: For consumer Colab, view compute-unit balance and burn rate in the runtime UI ("Resource
+      Usage" panel) and the Subscriptions page; for Colab Enterprise, use the standard Cloud Billing detailed
+      export to BigQuery filtered to Vertex AI Notebooks SKUs.
+  - name: Allocation
+    description: Allocate consumer Colab spend by user (each subscription is per-Google-account); for
+      Enterprise, tag Vertex AI notebook runtimes with team/project labels and pivot the FOCUS export
+      by labels.
+  - name: Optimization
+    description: Match GPU class to workload (e.g., T4 for prototyping, A100 only for serious training);
+      shut down idle runtimes promptly since compute units accrue continuously while connected; prefer
+      PAYG bundles when usage is bursty rather than steady.
+  - name: Accountability
+    description: Designate per-team Colab subscription owners; for Enterprise, set Cloud Billing budget
+      alerts on the Vertex AI Notebooks service per project; review monthly compute-unit burn and re-tier
+      where appropriate.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

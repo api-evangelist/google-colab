@@ -4,167 +4,146 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Google Colab
 providerId: google-colab
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Collaboration
-  - Data Science
-  - Google Cloud
-  - Jupyter
-  - Machine Learning
   - Notebooks
-  - Python
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Machine Learning
+  - Google Cloud
+  - Developer Tools
+description: Google Colab is a hosted Jupyter notebook environment offered in a free tier plus paid Pay-As-You-Go,
+  Colab Pro, and Colab Pro+ tiers, with a separate Colab Enterprise SKU sold through Google Cloud / Vertex
+  AI. Paid tiers are denominated in "compute units" that consume against your subscription or PAYG bucket
+  while connected to faster GPU/TPU runtimes. Exact monthly list prices are posted on the signup page
+  and the Vertex AI pricing page; consult the live pages for current values.
+sources:
+  - https://colab.research.google.com/signup
+  - https://cloud.google.com/colab/pricing
+  - https://research.google.com/colaboratory/faq.html
 plans:
   - id: google-colab-free
     name: Free
     type: freemium
-    description: Free entry tier for the Google Colab API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free Colab notebooks with limited access to GPU/TPU runtimes on a best-effort basis.
+      Sessions disconnect after idle and have shorter VM lifetimes than paid tiers.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Notebook compute (best effort)
+        description: Best-effort access to CPU and limited GPU/TPU runtimes
+        name: free_compute
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+        metric: session
+        limit: -1
+        timeFrame: usage
         geo: global
         domains:
-          - https://www.googleapis.com/drive/v3
           - https://colab.research.google.com
-          - https://notebooks.googleapis.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://www.googleapis.com/drive/v3
-          - https://colab.research.google.com
-          - https://notebooks.googleapis.com
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Colab API via Google Drive API
-      - name: Colab Runtime and Kernel Management
-      - name: Colab Enterprise API
-  - id: google-colab-pro
-    name: Professional
-    type: paid
-    description: Production tier for Google Colab. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Standard notebook editor
+      - name: Drive integration
+      - name: Limited GPU/TPU access (best effort)
+      - name: 12-hour max session
+  - id: google-colab-payg
+    name: Colab Pay-As-You-Go
+    type: pay-as-you-go
+    description: Buy compute units in bundles to consume premium GPU/TPU runtimes without a recurring
+      subscription. Compute units expire 90 days after purchase.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://www.googleapis.com/drive/v3
-          - https://colab.research.google.com
-          - https://notebooks.googleapis.com
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://www.googleapis.com/drive/v3
-          - https://colab.research.google.com
-          - https://notebooks.googleapis.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Compute units bundle
+        description: Pre-paid compute unit bundle priced per the signup page
+        name: compute_units
         type: metered
-        metric: requests
+        metric: compute_unit
+        limit: -1
+        timeFrame: usage
+        geo: global
+        domains:
+          - https://colab.research.google.com
+        unit: 1
+        price: see signup page
+        userMultiplied: false
+    elements:
+      - name: No recurring fee
+      - name: Compute units expire after 90 days
+      - name: Premium GPU/TPU access
+  - id: google-colab-pro
+    name: Colab Pro
+    type: subscription
+    description: Monthly subscription that includes a bundle of compute units, faster GPUs, longer runtime
+      sessions, and a Terminal feature.
+    entries:
+      - label: Monthly subscription
+        description: Recurring monthly subscription with included compute units
+        name: pro_subscription
+        type: subscription
+        metric: month
         limit: -1
         timeFrame: month
         geo: global
         domains:
-          - https://www.googleapis.com/drive/v3
           - https://colab.research.google.com
-          - https://notebooks.googleapis.com
-        unit: 1000
-        price: TBD
-        userMultiplied: false
+        unit: 1
+        price: see signup page
+        userMultiplied: true
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Colab API via Google Drive API
-      - name: Colab Runtime and Kernel Management
-      - name: Colab Enterprise API
-  - id: google-colab-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Google Colab. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+      - name: Included compute units (per month)
+      - name: Faster GPUs (T4, sometimes A100/L4)
+      - name: Longer session times
+      - name: Terminal access
+      - name: Background execution
+  - id: google-colab-pro-plus
+    name: Colab Pro+
+    type: subscription
+    description: Higher-tier monthly subscription with significantly more included compute units, priority
+      access to high-end GPUs (A100/H100/L4 where available), and persistent background execution.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Monthly subscription
+        description: Recurring monthly subscription with larger compute unit allotment
+        name: pro_plus_subscription
+        type: subscription
+        metric: month
         limit: -1
         timeFrame: month
-        geo: configurable
+        geo: global
         domains:
-          - https://www.googleapis.com/drive/v3
           - https://colab.research.google.com
-          - https://notebooks.googleapis.com
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
+        price: see signup page
+        userMultiplied: true
+    elements:
+      - name: More included compute units than Pro
+      - name: Priority access to high-end GPUs (A100/H100/L4)
+      - name: Persistent background execution
+      - name: 24-hour runtimes
+  - id: google-colab-enterprise
+    name: Colab Enterprise
+    type: enterprise
+    description: Enterprise SKU integrated with Vertex AI. Sold through Google Cloud at PAYG list prices
+      per machine type / region; supports VPC-SC, customer-managed encryption keys, and IAM-based notebook
+      sharing.
+    entries:
+      - label: Notebook runtime
+        description: Per-machine-type hourly Vertex AI compute
+        name: enterprise_runtime
+        type: metered
+        metric: instance-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
         domains:
-          - https://www.googleapis.com/drive/v3
-          - https://colab.research.google.com
-          - https://notebooks.googleapis.com
+          - https://colab.cloud.google.com
+          - https://aiplatform.googleapis.com
         unit: 1
-        price: custom
+        price: see Vertex AI pricing page
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Colab API via Google Drive API
-      - name: Colab Runtime and Kernel Management
-      - name: Colab Enterprise API
+      - name: Vertex AI integration
+      - name: VPC Service Controls
+      - name: Customer-managed encryption keys
+      - name: IAM-controlled notebook sharing
+      - name: Enterprise support
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
