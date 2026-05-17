@@ -84,9 +84,9 @@ common:
     url: https://developers.google.com/drive/api/guides/about-auth
   - type: Support
     url: https://research.google.com/colaboratory/faq.html
-  - type: Status
+  - type: StatusPage
     url: https://status.cloud.google.com
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/google-colab-context.jsonld
 maintainers:
   - FN: Kin Lane
