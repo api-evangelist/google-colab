@@ -1,24 +1,23 @@
 naftiko: 1.0.0-alpha2
 info:
-  label: Google Colab Notebooks via Drive API
-  description: Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This
-    API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating,
-    updating, and sharing notebooks.
+  label: Google Colab Notebooks via Drive API — Files
+  description: 'Google Colab Notebooks via Drive API — Files. 6 operations. Lead operation: Google Colab List Colab notebooks.
+    Self-contained Naftiko capability covering one Google Colab business surface.'
   tags:
-  - Google
-  - Colab
-  - API
-  created: '2026-05-06'
-  modified: '2026-05-06'
+  - Google Colab
+  - Files
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_COLAB_API_KEY: GOOGLE_COLAB_API_KEY
 capability:
   consumes:
   - type: http
-    namespace: google-colab
+    namespace: colab-drive-files
     baseUri: https://www.googleapis.com/drive/v3
-    description: Google Colab Notebooks via Drive API HTTP API.
-    authentication:
-      type: bearer
-      token: '{{GOOGLE_COLAB_TOKEN}}'
+    description: Google Colab Notebooks via Drive API — Files business capability. Self-contained, no shared references.
     resources:
     - name: files
       path: /files
@@ -26,6 +25,11 @@ capability:
       - name: listnotebooks
         method: GET
         description: Google Colab List Colab notebooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
         inputParameters:
         - name: q
           in: query
@@ -47,11 +51,6 @@ capability:
           in: query
           type: string
           description: Sort order (e.g. modifiedTime desc)
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
       - name: createnotebook
         method: POST
         description: Google Colab Create a Colab notebook
@@ -60,21 +59,27 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: files-fileid
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-fileId
       path: /files/{fileId}
       operations:
       - name: getnotebook
         method: GET
         description: Google Colab Get notebook metadata
-        inputParameters:
-        - name: fields
-          in: query
-          type: string
         outputRawFormat: json
         outputParameters:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
       - name: updatenotebook
         method: PATCH
         description: Google Colab Update notebook metadata
@@ -83,6 +88,12 @@ capability:
         - name: result
           type: object
           value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
       - name: deletenotebook
         method: DELETE
         description: Google Colab Delete a notebook
@@ -91,7 +102,7 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: files-fileid-copy
+    - name: files-fileId-copy
       path: /files/{fileId}/copy
       operations:
       - name: copynotebook
@@ -102,226 +113,168 @@ capability:
         - name: result
           type: object
           value: $.
-    - name: files-fileid-permissions
-      path: /files/{fileId}/permissions
-      operations:
-      - name: listpermissions
-        method: GET
-        description: Google Colab List notebook permissions
-        outputRawFormat: json
-        outputParameters:
-        - name: result
+        inputParameters:
+        - name: body
+          in: body
           type: object
-          value: $.
-      - name: createpermission
-        method: POST
-        description: Google Colab Share a notebook
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.GOOGLE_COLAB_API_KEY}}'
   exposes:
   - type: rest
+    namespace: colab-drive-files-rest
     port: 8080
-    namespace: google-colab-rest
-    description: REST adapter for Google Colab Notebooks via Drive API.
+    description: REST adapter for Google Colab Notebooks via Drive API — Files. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
     resources:
-    - path: /files
-      name: listnotebooks
+    - path: /v1/files
+      name: files
+      description: REST surface for files.
       operations:
       - method: GET
         name: listnotebooks
         description: Google Colab List Colab notebooks
-        call: google-colab.listnotebooks
+        call: colab-drive-files.listnotebooks
+        with:
+          q: rest.q
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+          fields: rest.fields
+          orderBy: rest.orderBy
         outputParameters:
         - type: object
           mapping: $.
-    - path: /files
-      name: createnotebook
-      operations:
       - method: POST
         name: createnotebook
         description: Google Colab Create a Colab notebook
-        call: google-colab.createnotebook
+        call: colab-drive-files.createnotebook
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /files/{fileId}
-      name: getnotebook
+    - path: /v1/files/{fileid}
+      name: files-fileid
+      description: REST surface for files-fileId.
       operations:
       - method: GET
         name: getnotebook
         description: Google Colab Get notebook metadata
-        call: google-colab.getnotebook
+        call: colab-drive-files.getnotebook
+        with:
+          fields: rest.fields
         outputParameters:
         - type: object
           mapping: $.
-    - path: /files/{fileId}
-      name: updatenotebook
-      operations:
       - method: PATCH
         name: updatenotebook
         description: Google Colab Update notebook metadata
-        call: google-colab.updatenotebook
+        call: colab-drive-files.updatenotebook
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /files/{fileId}
-      name: deletenotebook
-      operations:
       - method: DELETE
         name: deletenotebook
         description: Google Colab Delete a notebook
-        call: google-colab.deletenotebook
+        call: colab-drive-files.deletenotebook
         outputParameters:
         - type: object
           mapping: $.
-    - path: /files/{fileId}/copy
-      name: copynotebook
+    - path: /v1/files/{fileid}/copy
+      name: files-fileid-copy
+      description: REST surface for files-fileId-copy.
       operations:
       - method: POST
         name: copynotebook
         description: Google Colab Copy a notebook
-        call: google-colab.copynotebook
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /files/{fileId}/permissions
-      name: listpermissions
-      operations:
-      - method: GET
-        name: listpermissions
-        description: Google Colab List notebook permissions
-        call: google-colab.listpermissions
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /files/{fileId}/permissions
-      name: createpermission
-      operations:
-      - method: POST
-        name: createpermission
-        description: Google Colab Share a notebook
-        call: google-colab.createpermission
+        call: colab-drive-files.copynotebook
+        with:
+          body: rest.body
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
+    namespace: colab-drive-files-mcp
     port: 9090
-    namespace: google-colab-mcp
     transport: http
-    description: MCP adapter for Google Colab Notebooks via Drive API for AI agent use.
+    description: MCP adapter for Google Colab Notebooks via Drive API — Files. One tool per consumed operation, routed inline
+      through this capability's consumes block.
     tools:
-    - name: listnotebooks
+    - name: google-colab-list-colab-notebooks
       description: Google Colab List Colab notebooks
       hints:
         readOnly: true
         destructive: false
         idempotent: true
-      call: google-colab.listnotebooks
+      call: colab-drive-files.listnotebooks
       with:
         q: tools.q
         pageSize: tools.pageSize
         pageToken: tools.pageToken
         fields: tools.fields
         orderBy: tools.orderBy
-      inputParameters:
-      - name: q
-        type: string
-        description: Query string for filtering (e.g. mimeType filter for Colab files)
-      - name: pageSize
-        type: integer
-        description: Maximum number of files to return
-      - name: pageToken
-        type: string
-        description: Token for next page of results
-      - name: fields
-        type: string
-        description: Fields to include in the response
-      - name: orderBy
-        type: string
-        description: Sort order (e.g. modifiedTime desc)
       outputParameters:
       - type: object
         mapping: $.
-    - name: createnotebook
+    - name: google-colab-create-colab-notebook
       description: Google Colab Create a Colab notebook
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: google-colab.createnotebook
+      call: colab-drive-files.createnotebook
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: getnotebook
+    - name: google-colab-get-notebook-metadata
       description: Google Colab Get notebook metadata
       hints:
         readOnly: true
         destructive: false
         idempotent: true
-      call: google-colab.getnotebook
+      call: colab-drive-files.getnotebook
       with:
         fields: tools.fields
-      inputParameters:
-      - name: fields
-        type: string
-        description: fields
       outputParameters:
       - type: object
         mapping: $.
-    - name: updatenotebook
+    - name: google-colab-update-notebook-metadata
       description: Google Colab Update notebook metadata
       hints:
         readOnly: false
         destructive: false
-        idempotent: false
-      call: google-colab.updatenotebook
+        idempotent: true
+      call: colab-drive-files.updatenotebook
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: deletenotebook
+    - name: google-colab-delete-notebook
       description: Google Colab Delete a notebook
       hints:
         readOnly: false
         destructive: true
         idempotent: true
-      call: google-colab.deletenotebook
+      call: colab-drive-files.deletenotebook
       outputParameters:
       - type: object
         mapping: $.
-    - name: copynotebook
+    - name: google-colab-copy-notebook
       description: Google Colab Copy a notebook
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: google-colab.copynotebook
+      call: colab-drive-files.copynotebook
+      with:
+        body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: listpermissions
-      description: Google Colab List notebook permissions
-      hints:
-        readOnly: true
-        destructive: false
-        idempotent: true
-      call: google-colab.listpermissions
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: createpermission
-      description: Google Colab Share a notebook
-      hints:
-        readOnly: false
-        destructive: false
-        idempotent: false
-      call: google-colab.createpermission
-      outputParameters:
-      - type: object
-        mapping: $.
-binds:
-- namespace: env
-  keys:
-    GOOGLE_COLAB_TOKEN: GOOGLE_COLAB_TOKEN
