@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Colab Notebooks via Drive API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Colab List Colab notebooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.googleapis.com/drive/v3/files",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query string for filtering (e.g. mimeType filter for Colab files)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of files to return"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for next page of results"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to include in the response"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort order (e.g. modifiedTime desc)"
+              }
+            ]
+          },
+          "docs": "Lists Colab notebooks in Google Drive. Use the q parameter with mimeType='application/vnd.google.colaboratory' to filter for notebook files."
+        },
+        {
+          "info": {
+            "name": "Google Colab Create a Colab notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.googleapis.com/drive/v3/files",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Colab notebook in Google Drive by uploading metadata with the Colab MIME type."
+        },
+        {
+          "info": {
+            "name": "Google Colab Get notebook metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for a Colab notebook file."
+        },
+        {
+          "info": {
+            "name": "Google Colab Update notebook metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the metadata of a Colab notebook file."
+        },
+        {
+          "info": {
+            "name": "Google Colab Delete a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Colab notebook file."
+        },
+        {
+          "info": {
+            "name": "Google Colab Copy a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId/copy",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a copy of a Colab notebook, useful for templating workflows."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Colab List notebook permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId/permissions",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              }
+            ]
+          },
+          "docs": "Lists the sharing permissions for a Colab notebook."
+        },
+        {
+          "info": {
+            "name": "Google Colab Share a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.googleapis.com/drive/v3/files/:fileId/permissions",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notebook file"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a sharing permission for a Colab notebook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1147 @@
+{
+  "item": [
+    {
+      "id": "68860208-c23f-48a6-89c4-0d0d17906f15",
+      "name": "Files",
+      "description": {
+        "content": "Notebook file operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3416a6b2-7a59-4c15-8252-e6c4cf95a7ac",
+          "name": "Google Colab List Colab notebooks",
+          "request": {
+            "name": "Google Colab List Colab notebooks",
+            "description": {
+              "content": "Lists Colab notebooks in Google Drive. Use the q parameter with mimeType='application/vnd.google.colaboratory' to filter for notebook files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "mimeType='application/vnd.google.colaboratory'",
+                  "description": "Query string for filtering (e.g. mimeType filter for Colab files)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Maximum number of files to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Token for next page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Sort order (e.g. modifiedTime desc)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b5d48ac-182f-4825-a13d-451bf5f1f8ff",
+              "name": "List of Colab notebook files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "mimeType='application/vnd.google.colaboratory'"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"mimeType\": \"application/vnd.google.colaboratory\",\n      \"description\": \"string\",\n      \"parents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdTime\": \"1955-10-17T03:50:32.772Z\",\n      \"modifiedTime\": \"1992-06-03T15:19:22.955Z\",\n      \"owners\": [\n        {\n          \"displayName\": \"string\",\n          \"emailAddress\": \"string\"\n        },\n        {\n          \"displayName\": \"string\",\n          \"emailAddress\": \"string\"\n        }\n      ],\n      \"webViewLink\": \"https://OMUBnQxysxYfEOPizBtggPeaT.pgeuWtmSHYXkK1EXaStMDJ44jwXgTqem,M3ec8W-8V7tJ3ZNvilHjO,Pl43VbR\",\n      \"starred\": true,\n      \"trashed\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"mimeType\": \"application/vnd.google.colaboratory\",\n      \"description\": \"string\",\n      \"parents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdTime\": \"2015-11-01T01:04:13.849Z\",\n      \"modifiedTime\": \"2003-08-07T14:46:50.666Z\",\n      \"owners\": [\n        {\n          \"displayName\": \"string\",\n          \"emailAddress\": \"string\"\n        },\n        {\n          \"displayName\": \"string\",\n          \"emailAddress\": \"string\"\n        }\n      ],\n      \"webViewLink\": \"http://EgIFPST.skfsYCozx1+6rUdslOtIIAHNkloEVu0y0wmqIMLY9ze1qGT-9,d\",\n      \"starred\": false,\n      \"trashed\": false\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"kind\": \"drive#fileList\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e2ecbf7-c6bf-4a31-83c9-6b26d4711a95",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "mimeType='application/vnd.google.colaboratory'"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83dd6b57-b108-4860-b828-948440bb1338",
+          "name": "Google Colab Create a Colab notebook",
+          "request": {
+            "name": "Google Colab Create a Colab notebook",
+            "description": {
+              "content": "Creates a new Colab notebook in Google Drive by uploading metadata with the Colab MIME type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21e5bdf3-6a66-4430-9191-ba8bdce1cb38",
+              "name": "Notebook created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"string\",\n  \"parents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdTime\": \"1962-08-14T19:36:09.287Z\",\n  \"modifiedTime\": \"2011-04-20T11:27:35.933Z\",\n  \"owners\": [\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    },\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    }\n  ],\n  \"webViewLink\": \"http://h.bydLzf-bx,hxm4TL4TfTpVuWZINKs9.lnIlRmE\",\n  \"starred\": true,\n  \"trashed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae138e37-3099-4b3d-80ef-85f346a545fb",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "898469a1-2eb6-4b0e-80b5-3e0a5464cb36",
+          "name": "Google Colab Get notebook metadata",
+          "request": {
+            "name": "Google Colab Get notebook metadata",
+            "description": {
+              "content": "Retrieves metadata for a Colab notebook file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "012d15d2-a4d1-4f8d-a8a3-288975eaac1c",
+              "name": "Notebook file metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"string\",\n  \"parents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdTime\": \"1962-08-14T19:36:09.287Z\",\n  \"modifiedTime\": \"2011-04-20T11:27:35.933Z\",\n  \"owners\": [\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    },\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    }\n  ],\n  \"webViewLink\": \"http://h.bydLzf-bx,hxm4TL4TfTpVuWZINKs9.lnIlRmE\",\n  \"starred\": true,\n  \"trashed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbf05949-20a4-4dc6-8713-9e851029a7a1",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9816f3c2-a907-4226-94e5-c80457934fc7",
+          "name": "Google Colab Update notebook metadata",
+          "request": {
+            "name": "Google Colab Update notebook metadata",
+            "description": {
+              "content": "Updates the metadata of a Colab notebook file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a59dfa18-0377-4788-a0fa-76238da24901",
+              "name": "Notebook updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"string\",\n  \"parents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdTime\": \"1962-08-14T19:36:09.287Z\",\n  \"modifiedTime\": \"2011-04-20T11:27:35.933Z\",\n  \"owners\": [\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    },\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    }\n  ],\n  \"webViewLink\": \"http://h.bydLzf-bx,hxm4TL4TfTpVuWZINKs9.lnIlRmE\",\n  \"starred\": true,\n  \"trashed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66e00001-af83-48cf-8b93-b2e055c3bb29",
+          "name": "Google Colab Delete a notebook",
+          "request": {
+            "name": "Google Colab Delete a notebook",
+            "description": {
+              "content": "Permanently deletes a Colab notebook file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b8f7a62-be9e-40d3-99d2-b5f3b1e01249",
+              "name": "Notebook deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e051d24-f5ba-48f3-ac88-60a69fe50773",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62637bd4-3693-4076-a3fe-a62d51ec77f2",
+          "name": "Google Colab Copy a notebook",
+          "request": {
+            "name": "Google Colab Copy a notebook",
+            "description": {
+              "content": "Creates a copy of a Colab notebook, useful for templating workflows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ce97c36-a396-47d0-bf8b-c5a53c6c171b",
+              "name": "Notebook copied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"<string>\",\n  \"parents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"starred\": \"<boolean>\",\n  \"trashed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"mimeType\": \"application/vnd.google.colaboratory\",\n  \"description\": \"string\",\n  \"parents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdTime\": \"1962-08-14T19:36:09.287Z\",\n  \"modifiedTime\": \"2011-04-20T11:27:35.933Z\",\n  \"owners\": [\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    },\n    {\n      \"displayName\": \"string\",\n      \"emailAddress\": \"string\"\n    }\n  ],\n  \"webViewLink\": \"http://h.bydLzf-bx,hxm4TL4TfTpVuWZINKs9.lnIlRmE\",\n  \"starred\": true,\n  \"trashed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dea0d596-c4f9-41da-9822-8f229603c75b",
+      "name": "Permissions",
+      "description": {
+        "content": "Sharing and access control",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc094a8a-ad7a-450f-b8b9-2084f5ebd5ee",
+          "name": "Google Colab List notebook permissions",
+          "request": {
+            "name": "Google Colab List notebook permissions",
+            "description": {
+              "content": "Lists the sharing permissions for a Colab notebook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92077f6a-360b-497b-b4a4-1d7511a6664d",
+              "name": "List of permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"domain\",\n      \"role\": \"writer\",\n      \"emailAddress\": \"m5xP@Y.oeds\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"group\",\n      \"role\": \"commenter\",\n      \"emailAddress\": \"97ikb4Do@roKZlqJAOfOuLH.se\",\n      \"displayName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61a58eea-d8e2-4724-8f7a-ec4b8ee6e0fc",
+          "name": "Google Colab Share a notebook",
+          "request": {
+            "name": "Google Colab Share a notebook",
+            "description": {
+              "content": "Creates a sharing permission for a Colab notebook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileId",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) The ID of the notebook file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"role\": \"<string>\",\n  \"emailAddress\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2901c529-c9f8-4670-baa4-57a85213cd5a",
+              "name": "Permission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) The ID of the notebook file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"role\": \"<string>\",\n  \"emailAddress\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"domain\",\n  \"role\": \"commenter\",\n  \"emailAddress\": \"nzCV@wbDUnfMpllOzujFLYkqoAfNdd.yw\",\n  \"displayName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.googleapis.com/drive/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c33e1c0-21d7-4fd4-83eb-60ab5539b0ca",
+    "name": "Google Colab Notebooks via Drive API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating, updating, and sharing notebooks.\n\nContact Support:\n Name: Google Developers",
+      "type": "text/plain"
+    }
+  }
+}
