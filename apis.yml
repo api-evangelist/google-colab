@@ -73,6 +73,8 @@ apis:
       - type: Documentation
         url: https://cloud.google.com/colab/docs/reference/rest
 common:
+  - type: OAuthScopes
+    url: scopes/google-colab-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/googlecolab
   - type: LinkedIn
