@@ -73,6 +73,12 @@ apis:
       - type: Documentation
         url: https://cloud.google.com/colab/docs/reference/rest
 common:
+  - type: VulnerabilityDisclosure
+    url: security/google-colab-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/google-colab-domain-security.yml
+  - type: Authentication
+    url: authentication/google-colab-authentication.yml
   - type: OAuthScopes
     url: scopes/google-colab-scopes.yml
   - type: GitHubOrganization
