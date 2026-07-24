@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Google Colab Notebooks via Drive Files Permissions API
+  description: Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating, updating, and sharing notebooks.
+  version: v3
+  contact:
+    name: Google Developers
+    url: https://developers.google.com/drive
+  termsOfService: https://cloud.google.com/terms
+servers:
+- url: https://www.googleapis.com/drive/v3
+  description: Google Drive API v3
+security:
+- oauth2: []
+tags:
+- name: Permissions
+  description: Sharing and access control
+paths:
+  /files/{fileId}/permissions:
+    get:
+      operationId: listPermissions
+      summary: Google Colab List notebook permissions
+      description: Lists the sharing permissions for a Colab notebook.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/fileId'
+      responses:
+        '200':
+          description: List of permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Permission'
+    post:
+      operationId: createPermission
+      summary: Google Colab Share a notebook
+      description: Creates a sharing permission for a Colab notebook.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/fileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '200':
+          description: Permission created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+components:
+  schemas:
+    Permission:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - user
+          - group
+          - domain
+          - anyone
+        role:
+          type: string
+          enum:
+          - owner
+          - organizer
+          - fileOrganizer
+          - writer
+          - commenter
+          - reader
+        emailAddress:
+          type: string
+          format: email
+        displayName:
+          type: string
+          readOnly: true
+  parameters:
+    fileId:
+      name: fileId
+      in: path
+      required: true
+      description: The ID of the notebook file
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/drive: Full Drive access
+            https://www.googleapis.com/auth/drive.file: Per-file access
+externalDocs:
+  description: Google Drive API Reference
+  url: https://developers.google.com/drive/api/reference/rest/v3
