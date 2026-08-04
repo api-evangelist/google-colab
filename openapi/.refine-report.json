@@ -1,0 +1,16 @@
+{
+  "provider": "google-colab",
+  "sources": [
+    "google-colab-files-api-openapi.yml",
+    "google-colab-permissions-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-colab-files-api-openapi.yml",
+    "google-colab-permissions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
