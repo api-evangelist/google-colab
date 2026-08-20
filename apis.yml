@@ -28,6 +28,14 @@ tags:
   - Data Science
   - Google Cloud
   - Jupyter
+  - Machine-Learning
+  - Notebooks
+  - Python
+tags_raw:
+  - Collaboration
+  - Data Science
+  - Google Cloud
+  - Jupyter
   - Machine Learning
   - Notebooks
   - Python
@@ -42,6 +50,11 @@ apis:
   humanURL: https://research.google.com/colaboratory/faq.html
   baseURL: https://colab.research.google.com
   tags:
+  - GPU
+  - Kernel
+  - Runtime
+  - TPU
+  tags_raw:
   - GPU
   - Kernels
   - Runtime
@@ -71,6 +84,8 @@ apis:
   humanURL: https://developers.google.com/drive/api/guides/about-sdk
   baseURL: https://www.googleapis.com/drive/v3
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
