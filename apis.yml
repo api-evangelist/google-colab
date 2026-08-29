@@ -4,6 +4,18 @@ description: >-
   Google Colab (Colaboratory) is a hosted Jupyter notebook environment that provides free access to computing resources
   including GPUs and TPUs, with APIs for managing notebooks, runtimes, and integration with Google Drive for
   collaborative data science and machine learning workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
