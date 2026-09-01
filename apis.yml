@@ -63,7 +63,7 @@ apis:
   baseURL: https://colab.research.google.com
   tags:
   - GPU
-  - Kernels
+  - Kernel
   - Runtime
   - TPU
   tags_raw:
