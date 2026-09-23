@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Google Colab Notebooks via Drive Files Permissions API
+  title: Google Colab Notebooks via Drive Permissions API
   description: Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating, updating, and sharing notebooks.
   version: v3
   contact:

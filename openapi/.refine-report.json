@@ -1,8 +1,7 @@
 {
   "provider": "google-colab",
   "sources": [
-    "google-colab-files-api-openapi.yml",
-    "google-colab-permissions-api-openapi.yml"
+    "_original/colab-drive-openapi.yml"
   ],
   "outputs": [
     "google-colab-files-api-openapi.yml",
@@ -12,9 +11,12 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "google-colab-files-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "google-colab-permissions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "colab-drive-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "google-colab-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-colab-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
