@@ -40,7 +40,7 @@ tags:
   - Data Science
   - Google Cloud
   - Jupyter
-  - Machine-Learning
+  - Machine Learning
   - Notebooks
   - Python
 tags_raw:
@@ -51,6 +51,7 @@ tags_raw:
   - Machine Learning
   - Notebooks
   - Python
+  - Machine-Learning
 apis:
 - name: Colab Runtime and Kernel Management
   description: >-

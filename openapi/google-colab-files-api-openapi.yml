@@ -160,7 +160,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/File'
 components:
+  parameters:
+    fileId:
+      name: fileId
+      in: path
+      required: true
+      description: The ID of the notebook file
+      schema:
+        type: string
   schemas:
+    FileList:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        nextPageToken:
+          type: string
+        kind:
+          type: string
+          default: drive#fileList
     File:
       type: object
       properties:
@@ -207,26 +227,6 @@ components:
           type: boolean
         trashed:
           type: boolean
-    FileList:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-        nextPageToken:
-          type: string
-        kind:
-          type: string
-          default: drive#fileList
-  parameters:
-    fileId:
-      name: fileId
-      in: path
-      required: true
-      description: The ID of the notebook file
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2
