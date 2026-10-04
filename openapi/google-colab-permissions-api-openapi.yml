@@ -59,14 +59,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Permission'
 components:
-  parameters:
-    fileId:
-      name: fileId
-      in: path
-      required: true
-      description: The ID of the notebook file
-      schema:
-        type: string
   schemas:
     Permission:
       type: object
@@ -96,6 +88,14 @@ components:
         displayName:
           type: string
           readOnly: true
+  parameters:
+    fileId:
+      name: fileId
+      in: path
+      required: true
+      description: The ID of the notebook file
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
