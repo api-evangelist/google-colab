@@ -122,6 +122,8 @@ apis:
   - type: JSONSchema
     url: json-schema/google-colab-notebook-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/google-colab/overview
   - type: Plans
     url: plans/google-colab-plans-pricing.yml
   - type: RateLimits
