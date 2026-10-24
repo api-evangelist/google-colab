@@ -1,240 +1,249 @@
 {
+  "info": {
+    "_postman_id": "f42ad0bb-7810-4d23-8d5b-5343f876eda1",
+    "name": "Google Colab Notebooks via Drive Permissions API",
+    "description": "Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating, updating, and sharing notebooks.\n\nContact Support:\n Name: Google Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:39:52.000Z",
+    "updatedAt": "2026-10-22T01:39:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f42ad0bb-7810-4d23-8d5b-5343f876eda1"
+  },
   "item": [
     {
-      "id": "925f857a-0953-4deb-b1cf-48d7e283b8a3",
-      "name": "Permissions",
-      "description": {
-        "content": "Sharing and access control",
-        "type": "text/plain"
-      },
+      "name": "files",
       "item": [
         {
-          "id": "b9b3e9db-967a-45d8-b26a-b3f8c70f4b1c",
-          "name": "Google Colab List notebook permissions",
-          "request": {
-            "name": "Google Colab List notebook permissions",
-            "description": {
-              "content": "Lists the sharing permissions for a Colab notebook.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "files",
-                ":fileId",
-                "permissions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "fileId",
-                  "description": "(Required) The ID of the notebook file"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{fileId}",
+          "item": [
             {
-              "id": "26da0a7b-00f1-435b-a75d-b6802307e781",
-              "name": "List of permissions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "files",
-                    ":fileId",
-                    "permissions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "fileId",
-                      "description": "(Required) The ID of the notebook file"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "permissions",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Google Colab List notebook permissions",
+                  "id": "83e7ad67-4552-40f0-bf21-315028ffe72d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:fileId/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":fileId",
+                        "permissions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "618ad07b-e67c-4962-bb5e-e882e04f19f3",
+                          "key": "fileId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the notebook file"
+                        }
+                      ]
+                    },
+                    "description": "Lists the sharing permissions for a Colab notebook."
+                  },
+                  "response": [
+                    {
+                      "id": "3e1c118d-1f2a-4a5c-a5d1-b22d37f263e5",
+                      "name": "List of permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:fileId/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":fileId",
+                            "permissions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "fileId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"permissions\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"anyone\",\n      \"role\": \"commenter\",\n      \"emailAddress\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"anyone\",\n      \"role\": \"owner\",\n      \"emailAddress\": \"<email>\",\n      \"displayName\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:39:53.000Z",
+                      "updatedAt": "2026-10-22T01:39:53.000Z",
+                      "uid": "35240-3e1c118d-1f2a-4a5c-a5d1-b22d37f263e5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:39:53.000Z",
+                  "updatedAt": "2026-10-22T01:39:53.000Z",
+                  "uid": "35240-83e7ad67-4552-40f0-bf21-315028ffe72d"
+                },
+                {
+                  "name": "Google Colab Share a notebook",
+                  "id": "2dfe59a1-215d-4338-9409-1a5c481eac92",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"type\": \"anyone\",\n  \"role\": \"owner\",\n  \"emailAddress\": \"<email>\",\n  \"displayName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:fileId/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":fileId",
+                        "permissions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3574db58-dbfe-45da-aac9-900ad44f0472",
+                          "key": "fileId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the notebook file"
+                        }
+                      ]
+                    },
+                    "description": "Creates a sharing permission for a Colab notebook."
+                  },
+                  "response": [
+                    {
+                      "id": "202c643b-5e11-485d-99b9-641aadf460f1",
+                      "name": "Permission created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"type\": \"anyone\",\n  \"role\": \"owner\",\n  \"emailAddress\": \"<email>\",\n  \"displayName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/:fileId/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            ":fileId",
+                            "permissions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "fileId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"anyone\",\n  \"role\": \"owner\",\n  \"emailAddress\": \"<email>\",\n  \"displayName\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:39:53.000Z",
+                      "updatedAt": "2026-10-22T01:39:53.000Z",
+                      "uid": "35240-202c643b-5e11-485d-99b9-641aadf460f1"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:39:53.000Z",
+                  "updatedAt": "2026-10-22T01:39:53.000Z",
+                  "uid": "35240-2dfe59a1-215d-4338-9409-1a5c481eac92"
                 }
               ],
-              "body": "{\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"user\",\n      \"role\": \"writer\",\n      \"emailAddress\": \"v5DuYllb90572@CerBuhgBCGSOcDMrnnVTkcKjs.ntfa\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"anyone\",\n      \"role\": \"owner\",\n      \"emailAddress\": \"hrnpDLno@MGAqmWLzHwAKnTLOHfnwHrPziCO.bgaw\",\n      \"displayName\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "8086995d-e499-4296-bfd5-a816aec27524",
+              "createdAt": "2026-10-22T01:39:53.000Z",
+              "updatedAt": "2026-10-22T01:39:53.000Z",
+              "uid": "35240-8086995d-e499-4296-bfd5-a816aec27524"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "31eafbd4-d43a-4f28-8489-1ae825954e65",
-          "name": "Google Colab Share a notebook",
-          "request": {
-            "name": "Google Colab Share a notebook",
-            "description": {
-              "content": "Creates a sharing permission for a Colab notebook.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "files",
-                ":fileId",
-                "permissions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "fileId",
-                  "description": "(Required) The ID of the notebook file"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<string>\",\n  \"role\": \"<string>\",\n  \"emailAddress\": \"<email>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a6b8c1be-fab9-4d65-a073-2594e44eebea",
-              "name": "Permission created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "files",
-                    ":fileId",
-                    "permissions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "fileId",
-                      "description": "(Required) The ID of the notebook file"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"role\": \"<string>\",\n  \"emailAddress\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"type\": \"user\",\n  \"role\": \"writer\",\n  \"emailAddress\": \"LhHRjQk@AGHrPUGHZyNLGoFomsfYOuPDbZ.vywg\",\n  \"displayName\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "30241582-31b6-4df7-b76c-cfdba1a899a6",
+          "createdAt": "2026-10-22T01:39:53.000Z",
+          "updatedAt": "2026-10-22T01:39:53.000Z",
+          "uid": "35240-30241582-31b6-4df7-b76c-cfdba1a899a6"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://www.googleapis.com/drive/v3",
-      "key": "baseUrl"
+      "id": "89c802dc-fcd0-480d-8bf2-ffb4496102f1",
+      "createdAt": "2026-10-22T01:39:53.000Z",
+      "updatedAt": "2026-10-22T01:39:53.000Z",
+      "uid": "35240-89c802dc-fcd0-480d-8bf2-ffb4496102f1"
     }
   ],
   "auth": {
@@ -242,29 +251,30 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file"
+        "value": "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://oauth2.googleapis.com/token"
+        "value": "https://oauth2.googleapis.com/token",
+        "type": "string"
       },
       {
         "key": "authUrl",
-        "value": "https://accounts.google.com/o/oauth2/auth"
+        "value": "https://accounts.google.com/o/oauth2/auth",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "authorization_code"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e3e4ea1d-5b01-45b3-a5e9-a94d6b351a99",
-    "name": "Google Colab Notebooks via Drive Files Permissions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Colab notebooks are stored as Google Drive files with the MIME type application/vnd.google.colaboratory. This API specification covers the Google Drive v3 endpoints commonly used to manage Colab notebooks, including listing, creating, updating, and sharing notebooks.\n\nContact Support:\n Name: Google Developers",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://www.googleapis.com/drive/v3"
     }
-  }
+  ]
 }
