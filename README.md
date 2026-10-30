@@ -1,4 +1,4 @@
-# Google Colab (google-colab)
+# Google Colab
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,101 +66,147 @@
 
 Google Colab (Colaboratory) is a hosted Jupyter notebook environment that provides free access to computing resources including GPUs and TPUs, with APIs for managing notebooks, runtimes, and integration with Google Drive for collaborative data science and machine learning workflows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/google-colab/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/google-colab/refs/heads/main/apis.yml)
+**Areas:** Collaboration · Data Science · Google Cloud · Jupyter · Machine Learning · Notebooks · Python
 
-## Scope
+## Google Colab on APIs.io
 
-- **Type:** Index
+Everything profiled for Google Colab is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/google-colab/](https://apis.io/providers/google-colab/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Collaboration
-- Data Science
-- Google Cloud
-- Jupyter
-- Machine Learning
-- Notebooks
-- Python
+- [Colab Runtime and Kernel Management](https://apis.io/apis/google-colab/colab-runtime-and-kernel-management/) — Google Colab provides internal APIs for managing notebook runtimes and kernels, including connecting to hosted runtimes, local runtimes, and custom GCE VM…
+- [Colab Enterprise API](https://apis.io/apis/google-colab/colab-enterprise-api/) — The Colab Enterprise API on Google Cloud provides managed notebook runtimes integrated with Vertex AI. It enables creating and managing notebook execution…
+- [Google Colab Files API](https://apis.io/apis/google-colab/google-colab-files-api/) — Notebook file operations
+- [Google Colab Permissions API](https://apis.io/apis/google-colab/google-colab-permissions-api/) — Sharing and access control
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-13
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Colab API via Google Drive API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Google Colab notebooks are stored as files in Google Drive with the MIME type application/vnd.google.colaboratory. The Google Drive API provides programmatic access to create, read, update, delete, share, and organize Colab notebooks. Developers can use the Drive API to list notebooks, manage permissions for collaboration, copy templates, and integrate Colab notebooks into automated workflows.
+- [Google Colab Agentic Access](https://apis.io/agentic-access/google-colab/google-colab-agentic-access/)
 
-- **Human URL:** [https://developers.google.com/drive/api/guides/about-sdk](https://developers.google.com/drive/api/guides/about-sdk)
-- **Base URL:** `https://www.googleapis.com/drive/v3`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- File Management
-- Google Drive
-- Notebooks
+- [Google Colab Notebook](https://apis.io/schemas/google-colab/google-colab-notebook/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://developers.google.com/drive/api/reference/rest/v3)
-- [OpenAPI](openapi/colab-drive-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colab-drive.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colab-drive.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/google-colab-notebook-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Linked-data contexts for the provider's vocabulary.
 
-### Colab Runtime and Kernel Management
+- [Google Colab Context](https://apis.io/jsonld/google-colab/google-colab-context/)
 
-Google Colab provides internal APIs for managing notebook runtimes and kernels, including connecting to hosted runtimes, local runtimes, and custom GCE VM backends. The runtime API handles kernel lifecycle (connect, interrupt, restart), resource allocation (GPU/TPU), and execution of notebook cells. These capabilities are exposed through the Colab UI and the colab Python package.
+#### Collections (3)
 
-- **Human URL:** [https://research.google.com/colaboratory/faq.html](https://research.google.com/colaboratory/faq.html)
-- **Base URL:** `https://colab.research.google.com`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Google Colab Notebooks via Drive API](https://apis.io/collections/google-colab/open-colab-drive/)
+- [Google Colab Notebooks via Drive Files API](https://apis.io/collections/google-colab/open-google-colab-files-api/)
+- [Google Colab Notebooks via Drive Files Permissions API](https://apis.io/collections/google-colab/open-google-colab-permissions-api/)
 
-- GPU
-- Kernels
-- Runtime
-- TPU
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://research.google.com/colaboratory/faq.html)
-- [Postman Collection](collections/colab-drive.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colab-drive.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Google Colab — jsonschema rules](https://apis.io/rules/google-colab/google-colab-jsonschema-spectral-rules/)
 
-### Colab Enterprise API
+#### Security (3)
 
-The Colab Enterprise API on Google Cloud provides managed notebook runtimes integrated with Vertex AI. It enables creating and managing notebook execution schedules, runtime templates, and managed runtimes within Google Cloud projects. The API supports enterprise governance features including VPC Service Controls, customer-managed encryption keys, and IAM-based access control.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://cloud.google.com/colab/docs](https://cloud.google.com/colab/docs)
-- **Base URL:** `https://notebooks.googleapis.com`
+- [Google Colab Authentication](https://apis.io/security/google-colab/google-colab-authentication/)
+- [Google Colab Domain Security](https://apis.io/security/google-colab/google-colab-domain-security/)
+- [Google Colab Vulnerability Disclosure](https://apis.io/security/google-colab/google-colab-vulnerability-disclosure/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Enterprise
-- Managed Notebooks
-- Vertex AI
+The permissions the API asks for.
 
-#### Properties
+- [Google Colab Scopes](https://apis.io/scopes/google-colab/google-colab-scopes/)
 
-- [Documentation](https://cloud.google.com/colab/docs/reference/rest)
-- [Postman Collection](collections/colab-drive.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colab-drive.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [GitHub Organization](https://github.com/googlecolab)
-- [LinkedIn](https://www.linkedin.com/company/google-colab)
-- [Getting Started](https://colab.research.google.com/notebooks/welcome.ipynb)
+- [Google Colab Plans Pricing](https://apis.io/plans/google-colab/google-colab-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Google Colab Rate Limits](https://apis.io/rate-limits/google-colab/google-colab-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Google Colab Finops](https://apis.io/finops/google-colab/google-colab-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.google.com/)
+- [Getting started](https://colab.research.google.com/notebooks/welcome.ipynb)
 - [Pricing](https://colab.research.google.com/signup)
-- [Authentication](https://developers.google.com/drive/api/guides/about-auth)
 - [Support](https://research.google.com/colaboratory/faq.html)
-- [Status Page](https://status.cloud.google.com)
-- [JSON-LD](json-ld/google-colab-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [GitHub](https://github.com/googlecolab)
+- [Status](https://status.cloud.google.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 39.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 60.7 |
+| Contract governance | 9.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 18.4 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.0** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/google-colab/](https://apis.io/providers/google-colab/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Google Colab: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/google-colab/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
